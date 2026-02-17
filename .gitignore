@@ -1,0 +1,27 @@
+# Ignore OS and editor files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.bak
+*.tmp
+
+# Ignore VS Code workspace storage and extensions
+.vscode/
+!.vscode/settings.json
+!.vscode/keybindings.json
+!.vscode/snippets/
+
+# Ignore Python cache
+__pycache__/
+*.pyc
+
+# Ignore node modules
+node_modules/
+
+# Ignore log files
+*.log
+
+# Ignore local env files
+.env
+.env.*

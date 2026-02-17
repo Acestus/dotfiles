@@ -1,0 +1,21 @@
+// For Codespaces: Use this devcontainer to automatically install and configure your environment
+{
+    "name": "Dotfiles Codespace",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash"
+    },
+    "postCreateCommand": "bash setup.sh",
+    "features": {},
+    "customizations": {
+        "vscode": {
+            "settings": {},
+            "extensions": [
+                "ms-vscode.powershell",
+                "GitHub.copilot"
+            ]
+        }
+    }
+}

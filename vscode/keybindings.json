@@ -1,0 +1,63 @@
+// Place your key bindings in this file to override the defaults
+[
+    {
+        "key": "ctrl+k ctrl+k",
+        "command": "workbench.action.focusActiveEditorGroup"
+    },
+    {
+        "key": "ctrl+k ctrl+j",
+        "command": "terminal.focus"
+    },
+    {
+        "key": "ctrl+shift+g ctrl+shift+m",
+        "command": "github.copilot.git.generateCommitMessage"
+    },
+    {
+        "key": "ctrl+shift+g ctrl+shift+c",
+        "command": "git.commit"
+    },
+    {
+        "key": "ctrl+shift+g ctrl+shift+s",
+        "command": "git.syncRebase"
+    },
+    {
+        "key": "ctrl+shift+alt+down",
+        "command": "-editor.action.copyLinesDownAction",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+shift+alt+up",
+        "command": "-editor.action.copyLinesUpAction",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+shift+alt+up",
+        "command": "workbench.action.focusActiveEditorGroup"
+    },
+    {
+        "key": "ctrl+pagedown",
+        "command": "-workbench.action.terminal.focusNext",
+        "when": "terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus"
+    },
+    {
+        "key": "ctrl+shift+alt+down",
+        "command": "terminal.focus"
+    },
+    {
+        "key": "ctrl+shift+g ctrl+shift+g",
+        "command": "workbench.scm.focus"
+    },
+    {
+        "key": "ctrl+shift+i",
+        "command": "workbench.panel.chat.view.copilot.focus"
+    },
+    {
+        "key": "ctrl+k ctrl+b",
+        "command": "workbench.action.toggleSidebarVisibility"
+    },
+    {
+        "key": "alt+t",
+        "command": "workbench.action.terminal.runSelectedText",
+        "when": "terminalProcessSupported"
+    }
+]
