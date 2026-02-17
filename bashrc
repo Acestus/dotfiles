@@ -140,7 +140,10 @@ case ":$PATH:" in
 esac
 # pnpm end
 export OPENCLAW_URL="ws://192.168.1.100:18789"
-export OPENCLAW_TOKEN="2e1f011b5d542e712a7000a349473f8c40682559db8f5305"
+# OPENCLAW_TOKEN is now loaded securely from ~/.openclaw_token
+if [ -f "$HOME/.openclaw_token" ]; then
+  export OPENCLAW_TOKEN="$(cat $HOME/.openclaw_token)"
+fi
 alias claude='/home/acestus/git/scripts/claude.sh'
 alias rt='/home/acestus/git/scripts/claude.sh'
 
