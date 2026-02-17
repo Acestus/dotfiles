@@ -59,5 +59,29 @@
         "key": "alt+t",
         "command": "workbench.action.terminal.runSelectedText",
         "when": "terminalProcessSupported"
+    },
+    {
+        "key": "ctrl+alt+9",
+        "command": "workbench.scm.focus"
+    },
+    {
+        "key": "ctrl+alt+0",
+        "command": "github.copilot.git.generateCommitMessage"
+    },
+    {
+        "key": "ctrl+alt+2",
+        "command": "git.commit"
+    },
+    {
+        "key": "ctrl+alt+4",
+        "command": "git.syncRebase"
+    },
+    {
+        "key": "ctrl+alt+6",
+        "command": "github-actions.current-branch.focus"
+    },
+    {
+        "key": "ctrl+alt+8",
+        "command": "github-actions.explorer.current-branch.refresh"
     }
 ]
