@@ -68,7 +68,8 @@
         "bash",
         "zsh"
     ],
-    "editor.fontFamily": "MesloLGSDZ Nerd Font",
+    "editor.fontFamily": "Consolas, 'Courier New', monospace",
+    "terminal.integrated.fontFamily": "MesloLGS Nerd Font Mono",
     "terminal.integrated.env.windows": {},
     "workbench.editor.showTabs": "single",
     "extensions.experimental.affinity": {
@@ -236,5 +237,8 @@
     "chat.mcp.autostart": "never",
     "chat.useAgentSkills": true,
     "editor.formatOnSave": true,
-    "terminal.integrated.rightClickBehavior": "copyPaste"
+    "terminal.integrated.rightClickBehavior": "copyPaste",
+    "powershell.powerShellAdditionalExePaths": {
+        "pwsh": "/home/acestus/.local/bin/pwsh"
+    }
 }
