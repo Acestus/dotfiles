@@ -1,3 +1,5 @@
+# Ensure oh-my-posh is in PATH
+$env:PATH += ":$HOME/.local/bin"
 
 # Development Tools
 Set-Alias -Name k -Value kubectl -Option AllScope
@@ -70,12 +72,7 @@ function git-daily {
     git push
 }
 
-# oh-my-posh and PSReadLine settings
-oh-my-posh init pwsh --config "$HOME/git/dotfiles/.night-owl02.json" | Invoke-Expression
-Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete
-#Set-PSReadLineOption -PredictionSource History
-Set-PSReadLineOption -PredictionViewStyle ListView
-Set-PSReadLineOption -EditMode Windows
+
 
 # winget argument completer
 Register-ArgumentCompleter -Native -CommandName winget -ScriptBlock {
@@ -139,3 +136,15 @@ New-Module -Name "oh-my-posh-core" -ScriptBlock {
     # ...existing code from the provided script...
 } | Import-Module -Global
 # --- end oh-my-posh transient prompt workaround ---
+
+# oh-my-posh and PSReadLine settings (must be last to set prompt)
+try {
+    oh-my-posh init pwsh --config "$HOME/git/dotfiles/.night-owl02.json" | Invoke-Expression
+}
+catch {
+    "[$(Get-Date)] oh-my-posh failed: $($_.Exception.Message)" | Out-File -Append "$HOME/omp-profile-error.log"
+}
+Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete
+#Set-PSReadLineOption -PredictionSource History
+Set-PSReadLineOption -PredictionViewStyle ListView
+Set-PSReadLineOption -EditMode Windows
