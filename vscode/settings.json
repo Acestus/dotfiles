@@ -234,7 +234,9 @@
     "terminal.integrated.commandsToSkipShell": [
         "workbench.action.toggleSidebarVisibility",
         "workbench.action.files.openFile",
-        "workbench.view.explorer"
+        "workbench.view.explorer",
+        "workbench.action.terminal.focusPrevious",
+        "workbench.action.terminal.focusNext"
     ],
     "chat.mcp.autostart": "never",
     "chat.useAgentSkills": true,
