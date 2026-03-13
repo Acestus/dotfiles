@@ -232,7 +232,9 @@
         "sed": true
     },
     "terminal.integrated.commandsToSkipShell": [
-        "workbench.action.toggleSidebarVisibility"
+        "workbench.action.toggleSidebarVisibility",
+        "workbench.action.files.openFile",
+        "workbench.view.explorer"
     ],
     "chat.mcp.autostart": "never",
     "chat.useAgentSkills": true,
@@ -240,5 +242,6 @@
     "terminal.integrated.rightClickBehavior": "copyPaste",
     "powershell.powerShellAdditionalExePaths": {
         "pwsh": "/home/acestus/.local/bin/pwsh"
-    }
+    },
+    "terminal.integrated.tabs.enabled": false
 }
