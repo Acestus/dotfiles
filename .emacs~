@@ -1,0 +1,62 @@
+;;; -*- lexical-binding: t -*-
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-enabled-themes '(wheatgrass))
+ '(package-selected-packages '(bicep-ts-mode flycheck)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 6))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+(setq straight-use-package-by-default t)
+
+(straight-use-package 'use-package)
+(require 'use-package)
+
+(use-package bicep-ts-mode
+  :straight (bicep-ts-mode :type git :host github :repo "emacs-straight/bicep-ts-mode")
+  :mode "\\.bicep\\'")
+
+(use-package flycheck
+  :init (global-flycheck-mode)
+  :config
+  (flycheck-define-checker bicep
+    "Check `.bicep` files via the `bicep` CLI."
+    :command ("bicep" "build" source "--stdout")
+    :error-patterns
+    ((error line-start (file-name) "(" line "," column ")" " : error " (message) line-end))
+    :modes bicep-ts-mode)
+  (add-to-list 'flycheck-checkers 'bicep)
+  (add-hook 'bicep-ts-mode-hook #'flycheck-mode))
+
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+(fringe-mode 0)
+(setq initial-frame-alist '((fullscreen . maximized)))
+(add-hook 'window-setup-hook #'toggle-frame-fullscreen)
+(set-face-attribute 'default nil :height 180)
+
+(let ((crafted-modules (expand-file-name "~/git/crafted-emacs/modules")))
+  (when (file-directory-p crafted-modules)
+    (add-to-list 'load-path crafted-modules)
+    (let ((crafted-init (expand-file-name "crafted-init-config.el" crafted-modules)))
+      (when (file-exists-p crafted-init)
+        (load "crafted-init-config")))))

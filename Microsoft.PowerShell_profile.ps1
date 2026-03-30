@@ -1,5 +1,9 @@
-# Ensure oh-my-posh is in PATH
+
+# --- oh-my-posh transient prompt setup (must be first) ---
+$global:_ompTransientPrompt = $true
 $env:PATH += ":$HOME/.local/bin"
+oh-my-posh init pwsh --config "$HOME/git/dotfiles/.night-owl02.json" | Invoke-Expression
+# --- end oh-my-posh transient prompt setup ---
 
 # Development Tools
 Set-Alias -Name k -Value kubectl -Option AllScope
@@ -61,15 +65,42 @@ Set-Alias -Name log-all -Value Show-GitLogAll -Option AllScope
 
 # git-daily function
 function git-daily {
-    param (
-        [Parameter(Mandatory = $False)]
-        [string]$message = "Daily Commit"
-    )
-    Write-Host "Committing changes to git with message: $message"
-    git pull
-    git add .
-    git commit -m $message
+    git add -A
+
+    $status = git status --short
+    if (-not $status) {
+        Write-Host "Nothing to commit." -ForegroundColor Yellow
+        return
+    }
+
+    Write-Host "Changes staged:" -ForegroundColor Cyan
+    git status --short
+    Write-Host ""
+
+    $prompt = @'
+Inspect the staged git changes in the current repository and output only one concise commit message, no quotes, no markdown. Use git diff --cached if needed.
+'@
+    $commitMsg = (& copilot -p $prompt --silent --allow-tool 'shell(git:*)' --allow-all-paths --no-color | Out-String).Trim()
+    $commitMsg = ($commitMsg -split "`r?`n")[0].Trim().Trim('"')
+
+    if (-not $commitMsg) {
+        throw "Copilot did not return a commit message."
+    }
+
+    Write-Host "Suggested commit message:" -ForegroundColor Cyan
+    Write-Host "  $commitMsg" -ForegroundColor White
+    Write-Host ""
+
+    git commit --message $commitMsg
+    if ($LASTEXITCODE -ne 0) {
+        throw "git commit failed."
+    }
+
     git push
+    if ($LASTEXITCODE -ne 0) {
+        throw "git push failed."
+    }
+    Write-Host "Pushed successfully." -ForegroundColor Green
 }
 
 

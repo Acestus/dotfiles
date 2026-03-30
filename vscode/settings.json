@@ -236,14 +236,17 @@
         "workbench.action.files.openFile",
         "workbench.view.explorer",
         "workbench.action.terminal.focusPrevious",
-        "workbench.action.terminal.focusNext"
+        "workbench.action.terminal.focusNext",
+        "kilo-code.new.agentManagerOpen",
+        "kilo-code.new.agentManager.showTerminal"
     ],
     "chat.mcp.autostart": "never",
     "chat.useAgentSkills": true,
     "editor.formatOnSave": true,
     "terminal.integrated.rightClickBehavior": "copyPaste",
     "powershell.powerShellAdditionalExePaths": {
-        "pwsh": "/home/acestus/.local/bin/pwsh"
+        "pwsh": "/home/acestus/.dotnet/tools/pwsh"
     },
-    "terminal.integrated.tabs.enabled": false
+    "terminal.integrated.tabs.enabled": false,
+    "editor.fontSize": 24
 }

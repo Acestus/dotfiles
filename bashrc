@@ -92,6 +92,7 @@ alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
 alias k='kubectl'
+alias python='python3'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -161,3 +162,4 @@ alias editvscodekeys='code /home/acestus/git/dotfiles/vscode/keybindings.json'
 
 # Alias to edit VS Code snippets
 alias editvscodesnippets='code /home/acestus/git/dotfiles/vscode/snippets/snippets.code-snippets'
+alias gd='pwsh /home/acestus/git/dotfiles/scripts/git-daily.ps1'
