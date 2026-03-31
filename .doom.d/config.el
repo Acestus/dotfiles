@@ -188,6 +188,34 @@
               ("M-n" . copilot-next-completion)
               ("M-p" . copilot-previous-completion)))
 
+;; PlantUML previews via the local Docker server.
+(add-to-list 'auto-mode-alist '("\\.puml\\'" . plantuml-mode))
+
+(after! plantuml-mode
+  (setq plantuml-default-exec-mode 'executable
+        plantuml-executable-path (expand-file-name "~/.local/bin/plantuml-local-server")
+        plantuml-output-type "svg")
+
+  (defun my/plantuml-browse ()
+    "Open the current PlantUML buffer in the local server's web UI."
+    (interactive)
+    (let* ((source (buffer-substring-no-properties (point-min) (point-max)))
+           (compressed (deflate-zlib-compress source 'dynamic))
+           (b64 (base64-encode-string (apply #'unibyte-string compressed) t)))
+      (with-temp-buffer
+        (insert b64)
+        (translate-region (point-min) (point-max) plantuml-server-base64-char-table)
+        (browse-url (concat "http://localhost:8080/uml/" (buffer-string))))))
+
+  (define-key plantuml-mode-map (kbd "C-c C-b") #'my/plantuml-browse))
+
+;; Let Org edit PlantUML source blocks with plantuml-mode.
+(after! org
+  (setq org-plantuml-exec-mode 'plantuml
+        org-plantuml-executable-path (expand-file-name "~/.local/bin/plantuml-local-server")
+        org-plantuml-args nil)
+  (add-to-list 'org-src-lang-modes '("plantuml" . plantuml)))
+
 ;; Ligature configuration using ligature.el
 (defvar my/ligature-symbols
   '("www" "**" "***" "**/" "*>" "*/" "\\\\" "\\\\\\\\" "{-" "[]" "::" ":::" ":="
