@@ -12,6 +12,7 @@ bash setup.sh
 
 This will:
 - Symlink `.bashrc` to your home directory
+- Symlink `.doom.d` to the Doom Emacs config in this repo
 - Symlink PowerShell profile to `~/.config/powershell/`
 - Symlink VS Code `settings.json`, `keybindings.json`, and snippets
 

@@ -188,7 +188,7 @@
             }
         ]
     },
-    "workbench.colorTheme": "Default Dark Modern",
+    "workbench.colorTheme": "Dark Modern",
     "github-actions.workflows.pinned.refresh.enabled": true,
     "yaml.schemas": {
         "kubernetes": "*.yml"

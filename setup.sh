@@ -10,6 +10,12 @@ if [ -f "$HOME/.bashrc" ] && [ ! -L "$HOME/.bashrc" ]; then
 fi
 ln -sf "$DOTFILES_DIR/bashrc" "$HOME/.bashrc"
 
+# Symlink Doom Emacs config
+if [ -e "$HOME/.doom.d" ] && [ ! -L "$HOME/.doom.d" ]; then
+  mv "$HOME/.doom.d" "$HOME/.doom.d.bak"
+fi
+ln -sf "$DOTFILES_DIR/.doom.d" "$HOME/.doom.d"
+
 # Symlink PowerShell profile (Linux)
 POWERSHELL_PROFILE="$HOME/.config/powershell/Microsoft.PowerShell_profile.ps1"
 mkdir -p "$(dirname "$POWERSHELL_PROFILE")"
@@ -22,5 +28,9 @@ ln -sf "$DOTFILES_DIR/vscode/settings.json" "$VSCODE_USER/settings.json"
 ln -sf "$DOTFILES_DIR/vscode/keybindings.json" "$VSCODE_USER/keybindings.json"
 ln -sf "$DOTFILES_DIR/vscode/snippets/snippets.code-snippets" "$VSCODE_USER/snippets/snippets.code-snippets"
 
-echo "Symlinks created. Your environment is now using dotfiles from $DOTFILES_DIR."
+# Symlink Ghostty config
+GHOSTTY_CONFIG_DIR="$HOME/.config/ghostty"
+mkdir -p "$GHOSTTY_CONFIG_DIR"
+ln -sf "$DOTFILES_DIR/ghostty/config" "$GHOSTTY_CONFIG_DIR/config"
 
+echo "Symlinks created. Your environment is now using dotfiles from $DOTFILES_DIR."
