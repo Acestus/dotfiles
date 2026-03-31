@@ -32,5 +32,6 @@ ln -sf "$DOTFILES_DIR/vscode/snippets/snippets.code-snippets" "$VSCODE_USER/snip
 GHOSTTY_CONFIG_DIR="$HOME/.config/ghostty"
 mkdir -p "$GHOSTTY_CONFIG_DIR"
 ln -sf "$DOTFILES_DIR/ghostty/config" "$GHOSTTY_CONFIG_DIR/config"
+ln -sf "$DOTFILES_DIR/ghostty/config" "$GHOSTTY_CONFIG_DIR/config.ghostty"
 
 echo "Symlinks created. Your environment is now using dotfiles from $DOTFILES_DIR."
