@@ -189,9 +189,9 @@
               ("M-p" . copilot-previous-completion)))
 
 ;; PlantUML previews via the local Docker server.
-(add-to-list 'auto-mode-alist '("\\.puml\\'" . plantuml-mode))
-
-(after! plantuml-mode
+(use-package! plantuml-mode
+  :mode "\\.puml\\'"
+  :config
   (setq plantuml-default-exec-mode 'executable
         plantuml-executable-path (expand-file-name "~/.local/bin/plantuml-local-server")
         plantuml-output-type "svg")
