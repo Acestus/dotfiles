@@ -4,7 +4,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes '(wheatgrass))
+ '(custom-enabled-themes '(deeper-blue))
  '(load-prefer-newer t t)
  '(package-selected-packages '(bicep-ts-mode flycheck)))
 (custom-set-faces
@@ -47,10 +47,18 @@
   (add-to-list 'flycheck-checkers 'bicep)
   (add-hook 'bicep-ts-mode-hook #'flycheck-mode))
 
+(add-to-list 'auto-mode-alist '("\\.md\\'" . text-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . text-mode))
+(add-hook 'text-mode-hook #'visual-line-mode)
+(add-hook 'text-mode-hook #'outline-minor-mode)
+(global-auto-revert-mode 1)
+
 (menu-bar-mode -1)
 (tool-bar-mode -1)
-(scroll-bar-mode -1)
-(fringe-mode 0)
+(when (fboundp 'scroll-bar-mode)
+  (scroll-bar-mode -1))
+(when (fboundp 'fringe-mode)
+  (fringe-mode 0))
 (setq initial-frame-alist '((fullscreen . maximized)))
 (add-hook 'window-setup-hook #'toggle-frame-fullscreen)
 (set-face-attribute 'default nil :height 180)
