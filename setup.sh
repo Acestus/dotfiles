@@ -39,6 +39,15 @@ ln -sf "$DOTFILES_DIR/vscode/settings.json" "$VSCODE_USER/settings.json"
 ln -sf "$DOTFILES_DIR/vscode/keybindings.json" "$VSCODE_USER/keybindings.json"
 ln -sf "$DOTFILES_DIR/vscode/snippets/snippets.code-snippets" "$VSCODE_USER/snippets/snippets.code-snippets"
 
+# Symlink Neovim config
+NVIM_CONFIG_DIR="$HOME/.config/nvim"
+if [ -e "$NVIM_CONFIG_DIR" ] && [ ! -L "$NVIM_CONFIG_DIR" ]; then
+  mv "$NVIM_CONFIG_DIR" "$NVIM_CONFIG_DIR.bak.$(date +%Y%m%d-%H%M%S)"
+elif [ -L "$NVIM_CONFIG_DIR" ]; then
+  rm "$NVIM_CONFIG_DIR"
+fi
+ln -sf "$DOTFILES_DIR/nvim" "$NVIM_CONFIG_DIR"
+
 # Symlink Ghostty config
 GHOSTTY_CONFIG_DIR="$HOME/.config/ghostty"
 mkdir -p "$GHOSTTY_CONFIG_DIR"
