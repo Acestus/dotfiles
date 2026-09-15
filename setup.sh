@@ -10,6 +10,14 @@ if [ -f "$HOME/.bashrc" ] && [ ! -L "$HOME/.bashrc" ]; then
 fi
 ln -sf "$DOTFILES_DIR/bashrc" "$HOME/.bashrc"
 
+# Symlink fish config
+FISH_CONFIG_DIR="$HOME/.config/fish"
+mkdir -p "$FISH_CONFIG_DIR"
+if [ -e "$FISH_CONFIG_DIR/config.fish" ] && [ ! -L "$FISH_CONFIG_DIR/config.fish" ]; then
+  mv "$FISH_CONFIG_DIR/config.fish" "$FISH_CONFIG_DIR/config.fish.bak"
+fi
+ln -sf "$DOTFILES_DIR/fish.config" "$FISH_CONFIG_DIR/config.fish"
+
 # Symlink Doom Emacs config
 if [ -e "$HOME/.doom.d" ] && [ ! -L "$HOME/.doom.d" ]; then
   mv "$HOME/.doom.d" "$HOME/.doom.d.bak"
