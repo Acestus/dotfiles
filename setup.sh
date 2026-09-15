@@ -12,6 +12,9 @@ ln -sf "$DOTFILES_DIR/bashrc" "$HOME/.bashrc"
 
 # Symlink fish config
 FISH_CONFIG_DIR="$HOME/.config/fish"
+if [ -L "$FISH_CONFIG_DIR" ]; then
+  mv "$FISH_CONFIG_DIR" "$FISH_CONFIG_DIR.bak.$(date +%Y%m%d-%H%M%S)"
+fi
 mkdir -p "$FISH_CONFIG_DIR"
 if [ -e "$FISH_CONFIG_DIR/config.fish" ] && [ ! -L "$FISH_CONFIG_DIR/config.fish" ]; then
   mv "$FISH_CONFIG_DIR/config.fish" "$FISH_CONFIG_DIR/config.fish.bak"
