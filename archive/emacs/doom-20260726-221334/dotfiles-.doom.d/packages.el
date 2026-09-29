@@ -19,9 +19,16 @@
 ;; GitHub Copilot for inline completions and chat
 (package! copilot)
 
+;; Native Zulip client for Emacs
+(package! zulip :recipe (:host github :repo "suky57/emacs-zulip"))
+
 ;; Bicep (Azure ARM template language) support
 (package! bicep-mode
   :recipe (:host github :repo "christiaan-janssen/bicep-mode"))
+
+;; Voice dictation via OpenAI Whisper
+(package! whisper
+  :recipe (:host github :repo "natrys/whisper.el"))
 
 ;; To install a package directly from a remote git repo, you must specify a
 ;; `:recipe'. You'll find documentation on what `:recipe' accepts here:

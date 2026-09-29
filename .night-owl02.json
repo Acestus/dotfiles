@@ -206,18 +206,6 @@
                         "cache_duration": "none"
                     },
                     "leading_diamond": "\ue0b2",
-                    "trailing_diamond": "<transparent,#0e0e0e>\ue0b2</>",
-                    "template": "\ue77f  {{ if .Unsupported }}\uf071{{ else }}{{ .Full }}{{ end }} ",
-                    "foreground": "#0d6da8",
-                    "background": "#0e0e0e",
-                    "type": "dotnet",
-                    "style": "diamond"
-                },
-                {
-                    "properties": {
-                        "cache_duration": "none"
-                    },
-                    "leading_diamond": "\ue0b2",
                     "trailing_diamond": "<transparent,#06A4CE>\ue0b2</>",
                     "template": "\ue28e {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }} ",
                     "foreground": "#ffffff",
@@ -283,18 +271,6 @@
                     "foreground": "#ffffff",
                     "background": "#906cff",
                     "type": "kotlin",
-                    "style": "diamond"
-                },
-                {
-                    "properties": {
-                        "cache_duration": "none"
-                    },
-                    "leading_diamond": "\ue0b2",
-                    "trailing_diamond": "<transparent,#316ce4>\ue0b2</>",
-                    "template": "\uf308 {{.Context}} :: {{if .Namespace}}{{.Namespace}}{{else}}default{{end}} ",
-                    "foreground": "#ffffff",
-                    "background": "#316ce4",
-                    "type": "kubectl",
                     "style": "diamond"
                 },
                 {

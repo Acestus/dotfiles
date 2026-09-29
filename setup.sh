@@ -4,11 +4,11 @@ set -e
 
 DOTFILES_DIR="$(cd "$(dirname "$0")" && pwd)"
 
-# Symlink bashrc
+# Symlink .bashrc
 if [ -f "$HOME/.bashrc" ] && [ ! -L "$HOME/.bashrc" ]; then
   mv "$HOME/.bashrc" "$HOME/.bashrc.bak"
 fi
-ln -sf "$DOTFILES_DIR/bashrc" "$HOME/.bashrc"
+ln -sf "$DOTFILES_DIR/.bashrc" "$HOME/.bashrc"
 
 # Symlink fish config
 FISH_CONFIG_DIR="$HOME/.config/fish"
@@ -31,6 +31,11 @@ ln -sf "$DOTFILES_DIR/.doom.d" "$HOME/.doom.d"
 POWERSHELL_PROFILE="$HOME/.config/powershell/Microsoft.PowerShell_profile.ps1"
 mkdir -p "$(dirname "$POWERSHELL_PROFILE")"
 ln -sf "$DOTFILES_DIR/Microsoft.PowerShell_profile.ps1" "$POWERSHELL_PROFILE"
+
+# Symlink Fish config
+FISH_CONFIG_DIR="$HOME/.config/fish"
+mkdir -p "$FISH_CONFIG_DIR"
+ln -sf "$DOTFILES_DIR/fish.config" "$FISH_CONFIG_DIR/config.fish"
 
 # Symlink VS Code settings
 VSCODE_USER="$HOME/.config/Code/User"

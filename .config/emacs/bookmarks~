@@ -1,0 +1,15 @@
+;;;; Emacs Bookmark Format Version 1;;;; -*- coding: utf-8-emacs; mode: lisp-data -*-
+;;; This format is meant to be slightly human-readable;
+;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
+(("journal"
+ (filename . "/ssh:scout@scout-2.local:/Users/scout/git/journal/")
+ (front-context-string)
+ (rear-context-string)
+ (position . 1))
+("journal"
+ (filename . "/ssh:scout@scout-2.local:/Users/scout/git/journal/family/")
+ (front-context-string)
+ (rear-context-string)
+ (position . 1))
+)

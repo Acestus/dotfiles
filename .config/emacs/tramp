@@ -1,0 +1,52 @@
+;; -*- emacs-lisp -*- <26/09/13 20:22:11 ~/.config/emacs/tramp>
+;; Tramp connection history.  Don't change this file.
+;; Run `M-x tramp-cleanup-all-connections' instead.
+
+(((tramp-file-name "cache" nil nil nil nil nil nil)
+  ("tramp-version" "2.7.1.30.1"))
+ ((tramp-file-name "ssh" "scout" nil "scout-2.local" nil nil nil)
+  ("null-device" "/dev/null") ("uname" "Darwin 25.5.0")
+  ("locale" "LC_ALL=en_US.UTF-8") ("test" "test")
+  ("file-exists" "test -e")
+  ("remote-path"
+   ("/usr/bin" "/bin" "/usr/sbin" "/sbin" "/usr/local/bin"
+    "/opt/homebrew/bin" "/opt/homebrew/sbin"))
+  ("pipe-buf" 512) ("remote-shell" "/bin/sh") ("case-insensitive" t)
+  ("~" "/Users/scout") ("readlink" nil) ("perl-file-spec" t)
+  ("perl-cwd-realpath" t) ("perl" "\\perl")
+  ("ls" "/bin/ls --color=never") ("ls--dired" nil)
+  ("ls--quoting-style=literal --show-control-chars" nil) ("ls-w" "-w")
+  ("df-blocksize" 1024) ("df" "\\df -k") ("stat" nil)
+  ("id" "/usr/bin/id") ("uid-integer" 503) ("uid-string" "scout")
+  ("gid-integer" 20) ("gid-string" "staff")
+  ("groups-integer" (20 12 61 79 80 81))
+  ("groups-string"
+   ("staff" "everyone" "localaccounts" "_appserverusr" "admin"
+    "_appserveradm"))
+  ("bzr" nil) ("git" "\\git") ("hg" nil) ("ln" "\\ln"))
+ ((tramp-file-name "ssh" "violet" nil "violet" nil nil nil)
+  ("null-device" "/dev/null") ("uname" "Linux 6.12.47+rpt-rpi-2712")
+  ("locale" "LC_ALL=en_US.utf8") ("test" "test")
+  ("file-exists" "test -e")
+  ("remote-path"
+   ("/bin" "/usr/bin" "/sbin" "/usr/sbin" "/usr/local/bin"
+    "/usr/local/sbin"))
+  ("pipe-buf" 4096) ("remote-shell" "/bin/sh")
+  ("case-insensitive" nil) ("~" "/home/violet")
+  ("readlink" "\\readlink") ("ls" "/bin/ls --color=never")
+  ("ls--dired" "--dired")
+  ("ls--quoting-style=literal --show-control-chars"
+   "--quoting-style=literal --show-control-chars")
+  ("df-blocksize" 1)
+  ("df" "\\df --block-size=1 --output=size,used,avail")
+  ("stat" "env QUOTING_STYLE=locale \\stat") ("id" "/bin/id")
+  ("uid-integer" 1000) ("uid-string" "violet") ("gid-integer" 1000)
+  ("gid-string" "violet")
+  ("groups-integer"
+   (1000 4 20 24 27 29 44 46 60 100 102 105 110 115 993 994 995 1003))
+  ("groups-string"
+   ("violet" "adm" "dialout" "cdrom" "sudo" "audio" "video" "plugdev"
+    "games" "users" "input" "render" "netdev" "lpadmin" "gpio" "i2c"
+    "spi" "adultmedia"))
+  ("perl-file-spec" t) ("perl-cwd-realpath" t) ("perl" "\\perl")
+  ("bzr" nil) ("git" "\\git") ("hg" nil) ("ln" "\\ln")))

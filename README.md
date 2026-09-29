@@ -12,14 +12,15 @@ bash setup.sh
 
 This will:
 - Symlink `.bashrc` to your home directory
+- Symlink Fish `config.fish` to your home directory
 - Symlink `.doom.d` to the Doom Emacs config in this repo
 - Symlink PowerShell profile to `~/.config/powershell/`
 - Symlink VS Code `settings.json`, `keybindings.json`, and snippets
 
 ## Editing Configs
 
-Use the provided aliases (see bashrc and PowerShell profile) to quickly edit your config files:
-- `editbashrc` — Edit bashrc
+Use the provided aliases (see `.bashrc` and PowerShell profile) to quickly edit your config files:
+- `editbashrc` — Edit `.bashrc`
 - `editprofile` — Edit PowerShell profile
 - `editvscodesettings` — Edit VS Code settings
 - `editvscodekeys` — Edit VS Code keybindings
@@ -30,6 +31,6 @@ Use the provided aliases (see bashrc and PowerShell profile) to quickly edit you
 These dotfiles are Codespaces-ready. Add this repo as your Codespaces dotfiles repo for instant setup.
 
 ## Recommendations
-- Add your own aliases and functions to `bashrc` or PowerShell profile
+- Add your own aliases and functions to `.bashrc` or PowerShell profile
 - Use `.gitignore` to avoid committing unwanted files
-- Extend with zsh/fish configs if needed
+- Use `fish.config` if you prefer Fish shell

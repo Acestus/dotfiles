@@ -32,18 +32,17 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-moonlight)
 
 ;; Use a larger font for better readability.
-(setq doom-font (font-spec :family "Fira Code" :size 32 :weight 'semi-light :features '(:liga tlig)))
+(setq doom-font (font-spec :family "Fira Code" :size 20 :weight 'semi-light :features '(:liga tlig)))
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type t)
 
-;; If you use `org' and don't want your org files in the default location below,
-;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org/")
+;; Point Org at the journal so agenda files live where you already keep notes.
+(setq org-directory "~/journal/")
 
 ;; Start Doom Emacs in fullscreen from launch.
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
@@ -211,11 +210,65 @@
 
 ;; Let Org edit PlantUML source blocks with plantuml-mode.
 (after! org
+  (setq org-agenda-files
+        (seq-filter #'file-exists-p
+                    (list (expand-file-name "agenda.org" org-directory)
+                          (expand-file-name "tasks.org" org-directory)
+                          (expand-file-name "sample-agenda.org" org-directory)
+                          (expand-file-name "letters.org" org-directory)
+                          (expand-file-name "crm.org" org-directory)
+                          (expand-file-name "interactions.org" org-directory)
+                          (expand-file-name "job-search.org" org-directory)
+                          (expand-file-name "contacts.org" org-directory))))
   (setq org-plantuml-exec-mode 'plantuml
         org-plantuml-executable-path (expand-file-name "~/.local/bin/plantuml-local-server")
         org-plantuml-args nil)
   (add-to-list 'org-src-lang-modes '("plantuml" . plantuml)))
 
+;; mu4e + mbsync for Apple/iCloud mail.
+(after! mu4e
+  (setq mu4e-maildir (expand-file-name "~/mail")
+        mu4e-get-mail-command "mbsync -a"
+        mu4e-update-interval 300
+        mu4e-change-filenames-when-moving t
+        mu4e-sent-folder "/Sent"
+        mu4e-drafts-folder "/Drafts"
+        mu4e-trash-folder "/Trash"
+        mu4e-refile-folder "/Archive"
+        message-send-mail-function #'smtpmail-send-it
+        smtpmail-smtp-server "smtp.mail.me.com"
+        smtpmail-smtp-service 587
+        smtpmail-stream-type 'starttls
+        user-mail-address "william@bluegreen.love"
+        smtpmail-smtp-user "william@bluegreen.love"
+        user-full-name "William Weeks-Balconi")
+  (setq auth-sources '("~/.authinfo.gpg")))
+
+;; IRC and Zulip chat.
+;;;###autoload
+(defun my/erc-clojure ()
+  "Connect to the Clojure IRC channel on Libera."
+  (interactive)
+  (erc-tls :server "irc.libera.chat"
+           :port 6697
+           :nick "Acestus"
+           :full-name "William Weeks-Balconi"))
+
+(after! erc
+  (setq erc-nick "Acestus"
+        erc-user-full-name "William Weeks-Balconi"
+        erc-autojoin-channels-alist '(("irc.libera.chat" "#clojure")))
+  (map! :leader
+        :prefix ("o i" . "irc")
+        :desc "Connect to Clojure IRC" "c" #'my/erc-clojure))
+
+(use-package! zulip
+  :commands (zulip-login zulip-connect zulip-home zulip-channels zulip-dms)
+  :init
+  (require 'zulip-doom)
+  :config
+  (setq zulip-default-server "https://clojurians.zulipchat.com"
+        zulip-rc-file "~/.zuliprc"))
 ;; Ligature configuration using ligature.el
 (defvar my/ligature-symbols
   '("www" "**" "***" "**/" "*>" "*/" "\\\\" "\\\\\\\\" "{-" "[]" "::" ":::" ":="
@@ -233,3 +286,27 @@
   (dolist (mode '(prog-mode fundamental-mode bicep-mode))
     (ligature-set-ligatures mode my/ligature-symbols))
   (global-ligature-mode +1))
+
+;; Voice dictation via whisper.el (uses Python openai-whisper, not whisper.cpp)
+(use-package! whisper
+  :config
+  (setq whisper-install-whispercpp nil   ; disable whisper.cpp auto-install
+        whisper-model "base"             ; options: tiny, base, small, medium, large
+        whisper-language "en"
+        whisper-translate nil)
+  ;; Override whisper-command to use the Python whisper CLI instead of whisper.cpp
+  (defun whisper-command (input-file)
+    `("whisper"
+      "--model" ,whisper-model
+      "--language" ,whisper-language
+      ,@(when whisper-translate '("--task" "translate"))
+      "--output_format" "txt"
+      "--output_dir" ,(temporary-file-directory)
+      ,input-file))
+  (map! :leader
+        :prefix ("v" . "voice")
+        :desc "Dictate at point"  "v" #'whisper-run
+        :desc "Transcribe file"   "f" #'whisper-file))
+
+;; Set theme to doom-tokyo-night
+(setq doom-theme 'doom-tokyo-night)
