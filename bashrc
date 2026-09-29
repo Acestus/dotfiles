@@ -162,4 +162,4 @@ alias editvscodekeys='code /home/acestus/git/dotfiles/vscode/keybindings.json'
 
 # Alias to edit VS Code snippets
 alias editvscodesnippets='code /home/acestus/git/dotfiles/vscode/snippets/snippets.code-snippets'
-alias gd='pwsh /home/acestus/git/dotfiles/scripts/git-daily.ps1'
+alias gd='pwsh "$HOME/git/dotfiles/scripts/git-daily.ps1"'
