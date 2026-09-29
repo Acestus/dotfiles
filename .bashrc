@@ -64,7 +64,7 @@ alias editbashrc='code /home/acestus/git/dotfiles/.bashrc'
 alias editvscodesettings='code /home/acestus/git/dotfiles/vscode/settings.json'
 alias editvscodekeys='code /home/acestus/git/dotfiles/vscode/keybindings.json'
 alias editvscodesnippets='code /home/acestus/git/dotfiles/vscode/snippets/snippets.code-snippets'
-alias gd='/home/acestus/git/dotfiles/scripts/git-daily.cs'
+alias gd='$HOME/git/dotfiles/scripts/git-daily.cs'
 alias em='emacsclient -c -n -a ""'
 
 
