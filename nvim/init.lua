@@ -211,6 +211,16 @@ do
 
   vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
+  -- Run the shell command on the current line with <Space>r.
+  vim.keymap.set('n', '<leader>r', function()
+    local cmd = vim.trim(vim.api.nvim_get_current_line())
+    if cmd ~= '' then
+      vim.cmd('botright new')
+      vim.fn.termopen(cmd)
+      vim.cmd('startinsert')
+    end
+  end, { desc = 'Run command on current line' })
+
   -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
   -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
   -- is not what someone will guess without a bit more experience.
